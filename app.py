@@ -15,15 +15,15 @@ def home():
     return render_template('main.html')
 
 @app.route('/login')
-def home():
+def login():
     return render_template('login.html')
 
 @app.route('/membership')
-def home():
+def membership():
     return render_template('membership.html')
 
 @app.route('/post')
-def home():
+def post():
     return render_template('post.html')
 
 
