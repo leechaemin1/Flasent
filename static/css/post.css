@@ -17,10 +17,6 @@
     width: auto;
     height: 200px;
     background: url("../img/flasent-logo.png") no-repeat center;
-    
-    @media screen {
-        
-    }
 }
 
 .post-page .post-page__top {
