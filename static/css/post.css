@@ -1,0 +1,38 @@
+.post-page {
+    padding-top: 30px;
+}
+
+.post-page .log-button__container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.post-page .jumbotron {
+    margin-bottom: 50px;
+    background: url("../img/header-img.jpg") no-repeat 0;
+    background-size: cover;
+}
+.post-page .jumbotron h1 {
+    width: auto;
+    height: 200px;
+    background: url("../img/flasent-logo.png") no-repeat center;
+    
+    @media screen {
+        
+    }
+}
+
+.post-page .post-page__top {
+    margin-top: 50px;
+}
+
+.post-page .post-page__bottom {
+    border-top: 1px solid #333;
+    padding: 50px 0;
+    margin-top: 50px;
+}
+
+.post-page .post-page__buttton {
+    margin-bottom: 50px;
+}
