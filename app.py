@@ -7,7 +7,7 @@ import certifi
 
 client = MongoClient('mongodb+srv://diana:sparta@cluster0.oscy4t6.mongodb.net/Cluster0?retryWrites=true&w=majority',
                      tlsCAFile=certifi.where())
-db = client.dbsparta
+db = client.flower
 
 
 @app.route('/')
@@ -25,6 +25,13 @@ def membership():
 @app.route('/post')
 def post():
     return render_template('post.html')
+
+@app.route("/flower", methods=["GET"])
+def flowers_get():
+    flowers_list = list(db.flowers.find({'category': {'$regex': request.args.get('category')}},{'_id':False}))
+    return jsonify({'flowers': flowers_list})
+
+
 
 
 
