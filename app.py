@@ -31,9 +31,15 @@ def post(id):
     flower_list = list(db.flowers.find({}, {'_id': False}))
     if (int(id) >= len(flower_list)):
         return redirect('/')
-
-    # print(int(id))
     return render_template('post.html', id=id, doc=flower_list)
+
+@app.route("/category", methods=["GET"])
+def category():
+    category_receive = request.args.get('category_give')
+    print(category_receive)
+    return render_template('main.html', category_receive=category_receive)
+
+
 
 
 
