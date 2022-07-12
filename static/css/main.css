@@ -1,8 +1,7 @@
-*{
-    font-family: 'Gaegu', cursive;
-}
 body{
     background-color: blanchedalmond;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 20px;
 }
 .log-button__container {
     display: flex;
@@ -59,10 +58,7 @@ body{
     font-weight: bolder;
     color: black;
 }
-.card{
-    max-width: 300px;
-    margin:15px auto 10px;
-}
+
 .card> img{
     height:350px ;
 
