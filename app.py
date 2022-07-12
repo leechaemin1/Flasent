@@ -1,6 +1,6 @@
 import json
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 import requests
 
 app = Flask(__name__)
@@ -28,7 +28,10 @@ def membership():
 @app.route('/post/<id>')
 def post(id):
     flower_list = list(db.flowers.find({}, {'_id': False}))
-    print(flower_list)
+    if (int(id) >= len(flower_list)):
+        return redirect('/')
+
+    # print(int(id))
     return render_template('post.html', id=id, doc=flower_list)
 
 

@@ -34,7 +34,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title flower-name">꽃 이름</h5>
-                                <p class="card-text">{{ doc[id|int].name }}</p>
+                                <p class="card-text">{{ doc[id|int].name }} ({{ doc[id|int].e_name }})</p>
                                 <h5 class="card-title flower-name">꽃말</h5>
                                 <p class="card-text">{{ doc[id|int].flower_lang }}</p>
                                 <p class="card-text"><small class="text-muted">{{ doc[id|int].month }}에 피는 꽃</small></p>
@@ -51,11 +51,11 @@
                         <p>{{ doc[id|int].desc2 }}</p>
                     </dd>
 
-                    <dt class="col-sm-3">원산지</dt>
-                    <dd class="col-sm-9">{{ doc[id|int].origin }}</dd>
-
                     <dt class="col-sm-3">사이즈</dt>
                     <dd class="col-sm-9">{{ doc[id|int].size }}</dd>
+
+                    <dt class="col-sm-3">원산지</dt>
+                    <dd class="col-sm-9">{{ doc[id|int].origin }}</dd>
 
                 </dl>
             </div>
