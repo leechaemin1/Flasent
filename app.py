@@ -15,7 +15,8 @@ db = client.flower
 
 @app.route('/')
 def home():
-    return render_template('main.html')
+    flower_list = list(db.flowers.find({}, {'_id': False}))
+    return render_template('main.html', lists=flower_list)
 
 @app.route('/login')
 def login():

@@ -49,33 +49,20 @@
 
 
     <div class="flower-box row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA2MjVfMjIy%2FMDAxNjU2MTI3NDc2NDg0.iGVbHy7GmNEg-vVNpOuMmDc9iI6CM1lwVrSgnO-F7b8g.LbVCiR0E67Hm-hRF9bmqdje4KMFKHHl9zgIHhOVNOYkg.JPEG.eutteumwon%2F25%25BC%25DB%25C0%25CC3.jpg&type=sc960_832"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">빨간 장미</h5>
+        {% for list in lists %}
+            {% if list.category in '생일' %}
+                <div class="col">
+                    <a href="/post/{{ list.id }}">
+                        <div class="card">
+                        <img src="{{ list.img }}" class="card-img-top" alt="꽃 이미지" />
+                        <div class="card-body">
+                            <h5 class="card-title">{{ list.name }} ({{ list.category }})</h5>
+                        </div>
+                    </div>
+                    </a>
                 </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA1MjdfNDMg%2FMDAxNjUzNjEzMjQzODM1.FUl2jSHEueEUKxOyD69GYxV8q28um7IC64RcFHMAZIIg.FkD5Q0erwOKey4shJZQLwRONvpVcy6s7PCuOs8Gr4ZAg.JPEG.dnlgmlwo%2FKakaoTalk_20220527_095710917_03.jpg&type=sc960_832"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">작약</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA5MDRfMjc0%2FMDAxNTk5MjE1Nzc0NDgz.cC9K-lacVmRee0qNVR4aTffEYTm_7y0lW7oIfce4KGEg.iNY_13D6-oujT0GvVOoe2dPPkVHr9fKX4ASvh8XfBo4g.JPEG.permanentgreen%2FIMG_1037.jpg&type=sc960_832"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">맨드라미</h5>
-                </div>
-            </div>
-        </div>
+            {% endif %}
+        {% endfor %}
     </div>
 </div>
 </body>
