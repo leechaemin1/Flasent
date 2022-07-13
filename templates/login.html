@@ -15,7 +15,7 @@
     <!-- Bulma CSS 링크 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
 
-    <title>로그인페이지</title>
+    <title>Flasent - 로그인</title>
 
     <link rel="stylesheet" href="../static/css/login.css">
 
@@ -79,7 +79,8 @@
 </head>
 <body>
 <div class="back_img">
-    <div class="logo">
+    <div class="container">
+        <div class="logo">
         <img src="../static/img/flasent-logo-white.png">
     </div>
     <p>꽃 선물하기 좋은 <span id="temp">00.0</span>도</p>
@@ -99,9 +100,10 @@
             <p id="help-password-login"></p>
         </div>
         <div class="btn_box">
-            <button type="button" class="btn btn-outline-secondary"><a href="/membership">회원가입</a></button>
+            <button type="button" class="btn btn-outline-secondary" onclick="window.location.href = '/membership'"><a href="/membership">회원가입</a></button>
             <button type="button" class="btn btn-outline-secondary" onclick="sign_in()">로그인</button>
         </div>
+    </div>
     </div>
 </div>
 </body>
