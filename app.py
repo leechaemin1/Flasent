@@ -73,7 +73,7 @@ def post(id):
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        return render_template('main.html')
+        # return render_template('post.html')
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
@@ -89,10 +89,12 @@ def flowers_get():
 
 @app.route("/comments", methods=["POST"])
 def review_post():
-    # token_receive = request.cookies.get('mytoken')
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    user_info = db.users.find_one({"username": payload["id"]})
+    user_name = user_info["username"]
     # try:
-    #     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-    #     user_info = db.users.find_one({"username": payload["id"]})
+    #
     #     return render_template('index.html', user_info=user_info)
     # except jwt.ExpiredSignatureError:
     #     return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
@@ -101,13 +103,14 @@ def review_post():
 
     flowerid_receive = request.form['id_give']
     comment_receive = request.form["comment_give"]
-    print(flowerid_receive, comment_receive)
+    print(flowerid_receive, comment_receive, user_name)
 
     db.flowers.update_one(
         {"id": int(flowerid_receive)},
         {"$push": {
             "comment_list": {
-                "comment": comment_receive
+                "comment": comment_receive,
+                "user": user_name
             }
         }}
     )
