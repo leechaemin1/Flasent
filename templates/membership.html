@@ -33,14 +33,14 @@
         function id_check() {
             $.ajax({
                 type: "POST",
-                url: "/api/register/id",
+                url: "/api/membership/id",
                 data: {
                     id_give: $('#userid').val().toLowerCase(),
                 },
                 success: function (response) {
                     console.log(response)
                     if (response['result'] == 'empty') {
-                        alert(response['msg'])
+                        alert(response['아이디를 확인해주세요'])
                     } else if (response['result'] == 'fail') {
                         alert(response['msg'])
                     } else {
@@ -60,14 +60,9 @@
                     pw2_give: $('#userpw2').val(),
                 },
                 success: function (response) {
-                    if (response['result'] == 'empty') {
-                        alert(response['msg'])
-                    } else if (response['result'] == 'pw_error') {
-                        alert(response['msg'])
-                    } else if (response['result'] == 'nickerror') {
-                        alert(response['msg'])
-                    } else if (response['result'] == 'fail') {
-                        alert(response['msg'])
+                    if (response['result'] == 'success') {
+                            alert('회원가입이 완료되었습니다.')
+                            window.location.href = '/login'
                     } else {
                         alert(response['msg'])
                         window.location.href = '/'
@@ -75,7 +70,6 @@
                 }
             })
         }
-
     </script>
 </head>
 <body>
@@ -90,7 +84,7 @@
                 <div class="form-floating id-input">
                     <input id="userid" type="text" class="form-control" placeholder="아이디">
                     <label for="floatingInput">아이디</label>
-                    <button class='idbtn btn' onclick="id_check()">중복확인</button>
+
                 </div>
                 <p id="help-id-login"></p>
             </div>
@@ -109,12 +103,8 @@
                 <p id="help-repassword-login"></p>
             </div>
             <div class="btns">
-                <button class='registerbtn btn btn-outline-secondary' onclick="register()">
-                    회원가입
-                </button>
-                <button class='registerbtn btn btn-outline-secondary' onclick="window.history.back()">
-                    돌아가기
-                </button>
+                <button class='registerbtn btn btn-outline-secondary' onclick="register()">회원가입</button>
+                <button class='registerbtn btn btn-outline-secondary' onclick="window.history.back()">돌아가기</button>
             </div>
         </div>
     </div>
