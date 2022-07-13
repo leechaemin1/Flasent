@@ -11,53 +11,54 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script>
         function sign_out() {
-                $.removeCookie('mytoken', {path: '/'});
-                alert('로그인페이지로 돌아갑니다')
-                window.location.href = "/login"
-            }
-    </script>
-</head>
-    <script>
-         {#$(document).ready(function () {#}
-         {#    show_comment()#}
-         {# } )#}
-         {#function show_comment() {#}
-         {#    $.ajax({#}
-         {#        type: "GET",#}
-         {#        url: "/review",#}
-         {#        data: {},#}
-         {#        success: function (response) {#}
-         {#            let rows = response['comments']#}
-         {#            for (let i = 0; i < rows.length; i++) {#}
-         {#                let comment = rows[i][comment]#}
-         {#                let temp_html = `<div class="card">#}
-         {#                                       <div class="card-body">#}
-         {#                                           <blockquote class="blockquote mb-0">#}
-         {#                                               <p>{$comment}</p>#}
-         {#                                               <footer class="blockquote-footer">{$info}</footer>#}
-         {#                                           </blockquote>#}
-         {#                                       </div>`#}
-         {#                $('#comment-list').append(temp_html)#}
-         {#            }#}
-         {#        }#}
-         {#    })#}
-         {# } #}
-
-        function save_comment() {
-            let comment= $('#comment').val();
-            let flowerId = {{ doc[id|int].id }}
-                console.log(flowerId)
-
-            $.ajax({
-                type: "POST",
-                url: "/comments",
-                data: {comment_give: comment, id_give: flowerId},
-                success: function (response) {
-                    alert(response['msg'])
-                }
-            })
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그인페이지로 돌아갑니다')
+            window.location.href = "/login"
         }
     </script>
+</head>
+<script>
+    {#$(document).ready(function () {#}
+    {#    show_comment()#}
+    {# } )#}
+    {#function show_comment() {#}
+    {#    $.ajax({#}
+    {#        type: "GET",#}
+    {#        url: "/review",#}
+    {#        data: {},#}
+    {#        success: function (response) {#}
+    {#            let rows = response['comments']#}
+    {#            for (let i = 0; i < rows.length; i++) {#}
+    {#                let comment = rows[i][comment]#}
+    {#                let temp_html = `<div class="card">#}
+    {#                                       <div class="card-body">#}
+    {#                                           <blockquote class="blockquote mb-0">#}
+    {#                                               <p>{$comment}</p>#}
+    {#                                               <footer class="blockquote-footer">{$info}</footer>#}
+    {#                                           </blockquote>#}
+    {#                                       </div>`#}
+    {#                $('#comment-list').append(temp_html)#}
+    {#            }#}
+    {#        }#}
+    {#    })#}
+    {# } #}
+
+    function save_comment() {
+        let comment = $('#comment').val();
+        let flowerId = {{ doc[id|int].id }}
+            console.log(flowerId)
+
+        $.ajax({
+            type: "POST",
+            url: "/comments",
+            data: {comment_give: comment, id_give: flowerId},
+            success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
+            }
+        })
+    }
+</script>
 </head>
 <body>
 
@@ -74,7 +75,7 @@
             </div>
         </div>
     </header>
-    <div class="container">
+    <section class="container">
         <div class="post-page__contents">
             <div class="post-page__top">
                 <div class="card mb-3">
@@ -111,37 +112,37 @@
                 </dl>
             </div>
         </div>
-        <footer class="post-page__buttton d-flex justify-content-center">
-            <a href="/" class="btn btn-outline-secondary">뒤로가기</a>
-        </footer>
-    </div>
+    </section>
 
 
-    <div class="mypost">
-        <div class="form-floating">
+    <section class="container">
+        <div class="mypost">
+            <div class="form-floating">
             <textarea class="form-control" placeholder="Leave a comment here" id="comment"
                       style="height: 100px"></textarea>
-            <label for="floatingTextarea2">댓글</label>
-        </div>
-        <button onclick="save_comment()" type="button" class="btn btn-dark">댓글 남기기</button>
-    </div>
-    <div class="mycards" id="comment-list">
-        <div class="card">
-            <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                    {% for comment in doc[id|int].comment_list.comment %}
-{#                    {% if doc[id|int].comment_list.comment !== "" %}#}
-                        <p>{{ comment }}</p>
-{#                    {% endif %}#}
-
-{#                    <footer class="blockquote-footer">{{ doc[id|int].comments.userid }}</footer>#}
-                    {% endfor %}
-                </blockquote>
+                <label for="floatingTextarea2">댓글</label>
             </div>
+            <button onclick="save_comment()" type="button" class="btn btn-dark">댓글 남기기</button>
         </div>
+        {% if doc[id|int].comment_list|length != 0 %}
+            {% for text in doc[id|int].comment_list %}
+                <div class="mycards" id="comment-list">
+                    <div class="card">
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                                <p>{{ text.comment }}</p>
+                                <footer class="blockquote-footer">userid</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </section>
+
+    <div class="post-page__buttton d-flex justify-content-center">
+        <button onclick="window.history.back()" class="btn btn-outline-secondary">뒤로가기</button>
     </div>
-
-
 </div>
 </body>
 </html>
