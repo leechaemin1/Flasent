@@ -15,13 +15,13 @@
     <link rel="stylesheet" href="../static/css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gaegu&display=swap" rel="stylesheet">
     <script>
-         $(document).ready(function () {
+        $(document).ready(function () {
             categoryOnClick('');
         });
 
         function categoryOnClick(element) {
             const $li = document.querySelectorAll('.theme li');
-            for(let i = 0; i < $li.length; i++) {
+            for (let i = 0; i < $li.length; i++) {
                 $li[i].className = '';
             }
             element.className = 'active';
@@ -37,16 +37,19 @@
                     for (let i = 0; i < rows.length; i++) {
                         let name = rows[i]['name']
                         let img = rows[i]['img']
+                        let id = rows[i]['id']
 
-                        let temp_html = `<div class="col">
-                                            <div class="card">
-                                                    <img src="${img} "
-                                                        class="card-img-top" alt="...">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${name}</h5>
+                        let temp_html = `<a href="/post/${id}">
+                                            <div class="col">
+                                                <div class="card">
+                                                        <img src="${img} "
+                                                            class="card-img-top" alt="꽃 이미지">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">${name}</h5>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>`
+                                        </a>`
 
                         $('#flower-list').append(temp_html)
                     }
@@ -64,7 +67,7 @@
             </div>
         </div>
         <div class="logo-background">
-            <h1 class="flasent-logo"> </h1>
+            <h1 class="flasent-logo"></h1>
         </div>
 
     </header>
@@ -89,33 +92,6 @@
         </div>
 
         <div id="flower-list" class="flower-box row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card">
-                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA2MjVfMjIy%2FMDAxNjU2MTI3NDc2NDg0.iGVbHy7GmNEg-vVNpOuMmDc9iI6CM1lwVrSgnO-F7b8g.LbVCiR0E67Hm-hRF9bmqdje4KMFKHHl9zgIHhOVNOYkg.JPEG.eutteumwon%2F25%25BC%25DB%25C0%25CC3.jpg&type=sc960_832"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">빨간 장미</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA1MjdfNDMg%2FMDAxNjUzNjEzMjQzODM1.FUl2jSHEueEUKxOyD69GYxV8q28um7IC64RcFHMAZIIg.FkD5Q0erwOKey4shJZQLwRONvpVcy6s7PCuOs8Gr4ZAg.JPEG.dnlgmlwo%2FKakaoTalk_20220527_095710917_03.jpg&type=sc960_832"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">작약</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA5MDRfMjc0%2FMDAxNTk5MjE1Nzc0NDgz.cC9K-lacVmRee0qNVR4aTffEYTm_7y0lW7oIfce4KGEg.iNY_13D6-oujT0GvVOoe2dPPkVHr9fKX4ASvh8XfBo4g.JPEG.permanentgreen%2FIMG_1037.jpg&type=sc960_832"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">맨드라미</h5>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

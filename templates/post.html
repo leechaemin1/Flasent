@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>상세페이지</title>
+    <title>flasent - {{ doc[id|int].name }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/css/post.css">
 </head>
 </head>
 <body>
+{{ test }}
 <div class="post-page">
     <div class="container">
         <div class="log-button__container">
@@ -28,16 +29,15 @@
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="https://dummyimage.com/600x400/000/fff" class="img-fluid rounded-start"
-                                 alt="꽃 이미지">
+                            <img src="{{ doc[id|int].img }}" alt="꽃 이미지">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title flower-name">꽃 이름</h5>
-                                <p class="card-text">튤립</p>
+                                <p class="card-text">{{ doc[id|int].name }} ({{ doc[id|int].e_name }})</p>
                                 <h5 class="card-title flower-name">꽃말</h5>
-                                <p class="card-text">사랑의 고백, 매혹, 영원한 애정, 경솔</p>
-                                <p class="card-text"><small class="text-muted">4월~5월에 피는 꽃</small></p>
+                                <p class="card-text">{{ doc[id|int].flower_lang }}</p>
+                                <p class="card-text"><small class="text-muted">{{ doc[id|int].month }}에 피는 꽃</small></p>
                             </div>
                         </div>
                     </div>
@@ -45,27 +45,21 @@
             </div>
             <div class="post-page__bottom">
                 <dl class="row">
-                    <dt class="col-sm-3">Description lists</dt>
-                    <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
-
-                    <dt class="col-sm-3">Term</dt>
+                    <dt class="col-sm-3">상세 설명</dt>
                     <dd class="col-sm-9">
-                        <p>Definition for the term.</p>
-                        <p>And some more placeholder definition text.</p>
+                        <p>{{ doc[id|int].desc }}</p>
+                        <p>{{ doc[id|int].desc2 }}</p>
                     </dd>
 
-                    <dt class="col-sm-3">Another term</dt>
-                    <dd class="col-sm-9">This definition is short, so no extra paragraphs or anything.</dd>
+                    <dt class="col-sm-3">사이즈</dt>
+                    <dd class="col-sm-9">{{ doc[id|int].size }}</dd>
 
-                    <dt class="col-sm-3 text-truncate">Truncated term is truncated</dt>
-                    <dd class="col-sm-9">This can be useful when space is tight. Adds an ellipsis at the end.</dd>
-
-                    <dt class="col-sm-3">Another term</dt>
-                    <dd class="col-sm-9">This definition is short, so no extra paragraphs or anything.</dd>
+                    <dt class="col-sm-3">원산지</dt>
+                    <dd class="col-sm-9">{{ doc[id|int].origin }}</dd>
 
                 </dl>
             </div>
-        </div>
+    </div>
         <footer class="post-page__buttton d-flex justify-content-center">
             <a href="/" class="btn btn-outline-secondary">뒤로가기</a>
         </footer>

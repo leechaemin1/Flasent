@@ -15,7 +15,17 @@ a:hover {
     background-size: cover;
 
     margin: 0 0 30px 0;
+}
 
+.form-floating {
+    margin-left: 0 !important;
+}
+
+#help-id-login,
+#help-password-login {
+    font-size: 12px;
+    margin-top: 6px;
+    margin-bottom: 10px;
 }
 
 .back_img {
@@ -37,6 +47,9 @@ a:hover {
     padding: 20px;
 }
 
+.input-form + .input-form {
+    margin-top: 20px;
+}
 
 .form-floating {
     background-color: transparent;
