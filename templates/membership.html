@@ -29,16 +29,16 @@
 
     <style>
         a {
-    text-decoration: none;
-    color: white;
-}
+            text-decoration: none;
+            color: white;
+        }
     </style>
 
     <script>
         function id_check() {
             $.ajax({
                 type: "POST",
-                url: "mongodb+srv://diana:sparta@cluster0.oscy4t6.mongodb.net/Cluster0?retryWrites=true&w=majority",
+                url: "/flower/member",
                 data: {
                     id_give: $('#userid').val().toLowerCase(),
                 },
@@ -58,7 +58,7 @@
         function register() {
             $.ajax({
                 type: "POST",
-                url: "mongodb+srv://diana:sparta@cluster0.oscy4t6.mongodb.net/Cluster0?retryWrites=true&w=majority",
+                url: "/flower/member",
                 data: {
                     id_give: $('#userid').val(),
                     pw_give: $('#userpw').val(),
@@ -66,8 +66,8 @@
                 },
                 success: function (response) {
                     if (response['result'] == 'success') {
-                            alert('회원가입이 완료되었습니다.')
-                            window.location.href = '/login'
+                        alert('회원가입이 완료되었습니다.')
+                        window.location.href = '/login'
                     } else {
                         alert(response['msg'])
                         window.location.href = '/'
@@ -75,6 +75,19 @@
                 }
             })
         }
+
+        $.ajax({
+            type: "POST",
+            url: "/flower/member",
+            data: {
+                userid_give: userid,
+                userpw_give: userpw
+            },
+            success: function (response) {
+                alert("회원가입을 축하드립니다!")
+                window.location.replace("/login")
+            }
+        });
     </script>
 </head>
 <body>
@@ -109,7 +122,8 @@
             </div>
             <div class="btns">
                 <button class='registerbtn btn btn-outline-secondary' onclick="register()">회원가입</button>
-                <button class='registerbtn btn btn-outline-secondary' onclick="window.location.href = '/login'"><a href="/login">돌아가기</a></button>
+                <button class='registerbtn btn btn-outline-secondary' onclick="window.location.href = '/login'"><a
+                        href="/login">돌아가기</a></button>
             </div>
         </div>
     </div>
