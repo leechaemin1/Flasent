@@ -1,27 +1,37 @@
-*{
-    font-family: 'Gaegu', cursive;
-}
-body{
+body {
     background-color: blanchedalmond;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 20px;
+    padding-bottom: 50px;
 }
+
+ul {
+    padding: 0;
+}
+
+header {
+    padding-top: 30px;
+}
+
 .log-button__container {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .logo-background{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     max-width:100%;
     height: 300px;
-
     background-image: url("../img/background.jpg");
     background-position: center;
     background-size: cover;
 
 }
-.logo-background>h1{
-    width: auto;
+.logo-background > h1{
+    width: 100%;
     height: 200px;
     background: url("../img/flasent-logo-white.png") no-repeat center;
 }
@@ -42,27 +52,29 @@ body{
     max-width: 70%;
 
 }
-.theme>ul>li{
-    list-style: none;
-    margin: 30px auto;
-    color: dimgrey;
-}
 
 .theme>ul{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
 
+.theme>ul>li{
+    list-style: none;
+    margin: 30px auto;
+    color: dimgrey;
+    cursor: pointer;
 }
+
+.theme>ul>li.active {
+    color: deeppink;
+}
+
 .theme>ul>li:hover {
-    font-weight: bolder;
-    color: black;
+    color: deeppink;
 }
-.card{
-    max-width: 300px;
-    margin:15px auto 10px;
-}
+
 .card> img{
     height:350px ;
 

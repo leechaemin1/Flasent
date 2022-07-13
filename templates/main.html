@@ -13,14 +13,19 @@
             crossorigin="anonymous"></script>
     <title>Flasent</title>
     <link rel="stylesheet" href="../static/css/main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gaegu&display=swap" rel="stylesheet">
     <script>
-        $(document).ready(function () {
+         $(document).ready(function () {
             categoryOnClick('');
         });
 
-
         function categoryOnClick(element) {
+            const $li = document.querySelectorAll('.theme li');
+            for(let i = 0; i < $li.length; i++) {
+                $li[i].className = '';
+            }
+            element.className = 'active';
+
             let category_given = !element ? '' : element.getAttribute('data-category')
             $.ajax({
                 type: "GET",
@@ -44,15 +49,10 @@
                                         </div>`
 
                         $('#flower-list').append(temp_html)
-
                     }
                 }
-
-
             })
         }
-
-
     </script>
 </head>
 <body>
