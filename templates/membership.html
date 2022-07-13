@@ -30,42 +30,99 @@
     <link rel="stylesheet" href="../static/css/membership.css">
 
     <script>
+
+        function is_nickname(asValue) {
+            let regExp = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{2,10}$/;
+            return regExp.test(asValue);
+        }
+
+        function is_password(asValue) {
+            let regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
+            return regExp.test(asValue);
+        }
+
         function id_check() {
+            let username = $("#userid").val()
+            console.log(username)
+
+            if (username == "") {
+                $("#help-id-login").text("아이디를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#userid").focus()
+                return;
+            }
+            if (!is_nickname(username)) {
+                $("#help-id").text("아이디의 형식을 확인해주세요. 영문과 숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이").removeClass("is-safe").addClass("is-danger")
+                $("#userid").focus()
+                return;
+            }
+            $("#help-id-login").addClass("is-loading")
+
             $.ajax({
                 type: "POST",
-                url: "/api/membership/id",
+                url: "/membership/check_dup",
                 data: {
-                    id_give: $('#userid').val().toLowerCase(),
+                    username_give: username
                 },
                 success: function (response) {
-                    console.log(response)
-                    if (response['result'] == 'empty') {
-                        alert(response['아이디를 확인해주세요'])
-                    } else if (response['result'] == 'fail') {
-                        alert(response['msg'])
+                    if (response["exists"]) {
+                        $("#help-id-login").text("이미 존재하는 아이디입니다.").removeClass("is-safe").addClass("is-danger")
+                        $("#userid").focus()
                     } else {
-                        alert(response['msg'])
+                        $("#help-id-login").text("사용할 수 있는 아이디입니다.").removeClass("is-danger").addClass("is-success")
                     }
+                    $("#help-id-login").removeClass("is-loading")
                 }
             })
         }
 
         function register() {
+            let username = $("#userid").val()
+            let password = $("#userpw").val()
+            let password2 = $("#userpw2").val()
+
+            if ($("#help-id-login").hasClass("is-danger")) {
+                alert("아이디를 다시 확인해주세요.")
+                return;
+            } else if (!$("#help-id-login").hasClass("is-success")) {
+                alert("아이디 중복확인을 해주세요.")
+                return;
+            }
+
+              if (password == "") {
+                $("#help-password-login").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#userpw").focus()
+                return;
+            } else if (!is_password(password)) {
+                $("#help-password-login").text("비밀번호의 형식을 확인해주세요. 영문과 숫자 필수 포함, 특수문자(!@#$%^&*) 사용가능 8-20자").removeClass("is-safe").addClass("is-danger")
+                $("#userpw").focus()
+                return
+            } else {
+                $("#help-password-login").text("사용할 수 있는 비밀번호입니다.").removeClass("is-danger").addClass("is-success")
+            }
+            if (password2 == "") {
+                $("#help-repassword-login").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#userpw2").focus()
+                return;
+            } else if (password2 != password) {
+                $("#help-repassword-login").text("비밀번호가 일치하지 않습니다.").removeClass("is-safe").addClass("is-danger")
+                $("#userpw2").focus()
+                return;
+            } else {
+                $("#help-repassword-login").text("비밀번호가 일치합니다.").removeClass("is-danger").addClass("is-success")
+            }
+
+
             $.ajax({
                 type: "POST",
-                url: "/api/membership",
+                url: "/membership/save",
                 data: {
-                    id_give: $('#userid').val().toLowerCase(),
-                    pw_give: $('#userpw').val(),
-                    pw2_give: $('#userpw2').val(),
+                    username_give: username,
+                    password_give: password
                 },
                 success: function (response) {
                     if (response['result'] == 'success') {
-                            alert('회원가입이 완료되었습니다.')
+                            alert(response['msg'])
                             window.location.href = '/login'
-                    } else {
-                        alert(response['msg'])
-                        window.location.href = '/'
                     }
                 }
             })
@@ -84,7 +141,7 @@
                 <div class="form-floating id-input">
                     <input id="userid" type="text" class="form-control" placeholder="아이디">
                     <label for="floatingInput">아이디</label>
-
+                    <button class='idbtn btn' onclick="id_check()">중복확인</button>
                 </div>
                 <p id="help-id-login"></p>
             </div>
