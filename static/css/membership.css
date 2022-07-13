@@ -1,6 +1,15 @@
 * {
     font-family: 'Gowun Dodum', sans-serif;
 }
+#help-id-login,
+#help-password-login,
+#help-repassword-login {
+    color: white;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
 
 .background {
     width: 100%;

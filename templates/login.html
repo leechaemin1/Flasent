@@ -27,6 +27,7 @@
                 data: {},
                 success: function (response) {
                     let temp = response['temp']
+                    temp = temp.toFixed(1)
 
                     $('#temp').text(temp)
                 }

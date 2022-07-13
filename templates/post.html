@@ -17,9 +17,50 @@
             }
     </script>
 </head>
+    <script>
+         {#$(document).ready(function () {#}
+         {#    show_comment()#}
+         {# } )#}
+         {#function show_comment() {#}
+         {#    $.ajax({#}
+         {#        type: "GET",#}
+         {#        url: "/review",#}
+         {#        data: {},#}
+         {#        success: function (response) {#}
+         {#            let rows = response['comments']#}
+         {#            for (let i = 0; i < rows.length; i++) {#}
+         {#                let comment = rows[i][comment]#}
+         {#                let temp_html = `<div class="card">#}
+         {#                                       <div class="card-body">#}
+         {#                                           <blockquote class="blockquote mb-0">#}
+         {#                                               <p>{$comment}</p>#}
+         {#                                               <footer class="blockquote-footer">{$info}</footer>#}
+         {#                                           </blockquote>#}
+         {#                                       </div>`#}
+         {#                $('#comment-list').append(temp_html)#}
+         {#            }#}
+         {#        }#}
+         {#    })#}
+         {# } #}
+
+        function save_comment() {
+            let comment= $('#comment').val();
+            let flowerId = {{ doc[id|int].id }}
+                console.log(flowerId)
+
+            $.ajax({
+                type: "POST",
+                url: "/comments",
+                data: {comment_give: comment, id_give: flowerId},
+                success: function (response) {
+                    alert(response['msg'])
+                }
+            })
+        }
+    </script>
 </head>
 <body>
-{{ test }}
+
 <div class="post-page">
     <div class="container">
         <div class="log-button__container">
@@ -74,6 +115,33 @@
             <a href="/" class="btn btn-outline-secondary">뒤로가기</a>
         </footer>
     </div>
+
+
+    <div class="mypost">
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="comment"
+                      style="height: 100px"></textarea>
+            <label for="floatingTextarea2">댓글</label>
+        </div>
+        <button onclick="save_comment()" type="button" class="btn btn-dark">댓글 남기기</button>
+    </div>
+    <div class="mycards" id="comment-list">
+        <div class="card">
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    {% for comment in doc[id|int].comment_list.comment %}
+{#                    {% if doc[id|int].comment_list.comment !== "" %}#}
+                        <p>{{ comment }}</p>
+{#                    {% endif %}#}
+
+{#                    <footer class="blockquote-footer">{{ doc[id|int].comments.userid }}</footer>#}
+                    {% endfor %}
+                </blockquote>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 </body>
 </html>
