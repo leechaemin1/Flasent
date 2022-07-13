@@ -59,12 +59,19 @@ a:hover {
 
 
 .btn_box {
-    margin-left: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-top: 28px;
 }
 .btn_box > button  {
-    /*color: white;*/
+    width: 100%;
+    color: white;
     border: 1px solid #ddd;
+}
+
+.btn_box > button + button {
+    margin-left: 20px;
 }
 
 p {
