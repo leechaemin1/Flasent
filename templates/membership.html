@@ -3,12 +3,12 @@
 <head>
 
     <!-- Webpage Title -->
-    <title>Flasent</title>
+    <title>Flasent - 회원가입</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-     <meta property="og:image" content="/static/image/og.png"/>
+    <meta property="og:image" content="/static/image/og.png"/>
     <link rel="shortcut icon" href="/static/image/favicon.png">
     <link rel="icon" href="/static/image/favicon.png">
 
@@ -27,114 +27,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/css/membership.css">
 
-    <style>
-        * {
-            font-family: 'Gowun Dodum', sans-serif;
-        }
-
-        html {
-            height: 100%;
-        }
-
-        body {
-            height: 100%;
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i.ibb.co/S5x9gXr/background.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        .background {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-        }
-
-        .wrap {
-            width: 50%;
-            height: 80%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .titlebox {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            margin: 2% 0 2% 0;
-            color: white;
-        }
-        .titlebox > h1 {
-            font-size: 60px;
-            margin: auto;
-        }
-        .registerbox {
-            width: 80%;
-        }
-
-        .btns {
-            margin-top: 1%;
-            display: flex;
-            justify-content: center;
-            width: 80%;
-        }
-
-        .btns > button:first-child {
-            margin-right: 10px;
-        }
-
-        .registerbtn {
-            background-color: white;
-            color: black;
-            border: 1px outset white;
-            border-radius: 10px;
-            font-family: 'Gowun Dodum', sans-serif;
-            margin-right: 1%;
-            margin-left: 20%;
-            padding: 1%;
-        }
-
-        .registerbtn > span {
-            background-color: white;
-        }
-
-        .registerbtn:hover {
-            font-weight: bold;
-        }
-
-        .idbtn {
-            margin-left: 10px;
-            background-color: white;
-        }
-
-        .idbtn > span {
-            background-color: white;
-        }
-
-        @media screen and (max-width: 700px) {
-            .titlebox {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                margin: 2% 0 2% 0;
-                color: white;
-                width: 100%;
-            }
-
-            .titlebox > h1 {
-                font-size: 50px;
-                margin-bottom: 0;
-            }
-
-        }
-    </style>
     <script>
         function id_check() {
             $.ajax({
@@ -186,39 +80,44 @@
 </head>
 <body>
 <div class="background">
-    <div class="wrap">
-        <div class="titlebox">
-            <img src="https://i.ibb.co/VSNmbQC/Kakao-Talk-20220711-202504702.png">
+    <div class="wrap container">
+        <div class="logo">
+            <img src="../static/img/flasent-logo-white.png">
         </div>
         <div class="registerbox">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">ID&nbsp&nbsp&nbsp&nbsp</span>
-                <input id='userid' type="text" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default" placeholder="아이디 입력">
-                <button class='idbtn' onclick="id_check()">
-                    <span>중복화인</span>
+            <h2 class="join-title">회원가입</h2>
+            <div class="input-form">
+                <div class="form-floating id-input">
+                    <input id="userid" type="text" class="form-control" placeholder="아이디">
+                    <label for="floatingInput">아이디</label>
+                    <button class='idbtn btn' onclick="id_check()">중복확인</button>
+                </div>
+                <p id="help-id-login"></p>
+            </div>
+            <div class="input-form">
+                <div class="form-floating">
+                    <input id="userpw" type="password" class="form-control" placeholder="비밀번호">
+                    <label for="floatingInput">비밀번호</label>
+                </div>
+                <p id="help-password-login"></p>
+            </div>
+            <div class="input-form">
+                <div class="form-floating">
+                    <input id="userpw2" type="password" class="form-control" placeholder="비밀번호">
+                    <label for="floatingInput">비밀번호 확인</label>
+                </div>
+                <p id="help-repassword-login"></p>
+            </div>
+            <div class="btns">
+                <button class='registerbtn btn btn-outline-secondary' onclick="register()">
+                    회원가입
+                </button>
+                <button class='registerbtn btn btn-outline-secondary' onclick="window.history.back()">
+                    돌아가기
                 </button>
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">PW&nbsp&nbsp&nbsp&nbsp</span>
-                <input id='userpw' type="password" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default" PLACEHOLDER="비밀번호 입력">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">PW확인</span>
-                <input id='userpw2' type="password" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default" PLACEHOLDER="비밀번호 재입력">
-            </div>
-        <div class="btns">
-            <button class='registerbtn' onclick="register()">
-                회원가입
-            </button>
-            <button class='registerbtn' onclick="window.location.href = '/'">
-                돌아가기
-            </button>
         </div>
     </div>
-</div>
 </div>
 </body>
 </html>
