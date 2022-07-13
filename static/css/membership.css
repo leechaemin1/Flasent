@@ -1,0 +1,125 @@
+* {
+    font-family: 'Gowun Dodum', sans-serif;
+}
+#help-id-login,
+#help-password-login,
+#help-repassword-login {
+    color: white;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+
+.background {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.logo img {
+    width: 350px;
+    height: 120px;
+    background-position: center;
+    background-size: cover;
+}
+
+.join-title {
+    width: 100%;
+    font-size: 22px;
+    color: white;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-form + .input-form {
+    margin-top: 20px;
+}
+
+.registerbox {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.id-input {
+    position: relative;
+    width: 100%;
+}
+
+.btns {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.btns > button + button {
+    margin-left: 20px;
+}
+
+.registerbtn {
+    color: white;
+    width: 100%;
+    border: 1px solid white;
+}
+
+.registerbtn > span {
+    background-color: white;
+}
+
+.registerbtn:hover {
+    font-weight: bold;
+}
+
+.btn.idbtn {
+    width: 22%;
+    height: 100%;
+    font-size: 14px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-left: 10px;
+    background-color: #dfdfdf;
+}
+
+.btn.idbtn:focus {
+  box-shadow: none !important;
+}
+
+#userid {
+    padding-right: 23%;
+}
+
+@media screen and (max-width: 700px) {
+    .titlebox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 2% 0 2% 0;
+        color: white;
+        width: 100%;
+    }
+
+    .titlebox > h1 {
+        font-size: 50px;
+        margin-bottom: 0;
+    }
+
+}
