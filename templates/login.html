@@ -12,34 +12,95 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
 
+    <!-- Bulma CSS 링크 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
     <title>로그인페이지</title>
 
     <link rel="stylesheet" href="../static/css/login.css">
 
     <script>
+        {#$(document).ready(function () {#}
+        {#    $.ajax({#}
+        {#        type: "GET",#}
+        {#        url: "http://spartacodingclub.shop/sparta_api/weather/seoul",#}
+        {#        data: {},#}
+        {#        success: function (response) {#}
+        {#            let temp = response['temp']#}
+        {##}
+        {#            $('#temp').text(temp)#}
+        {#        }#}
+        {#    })#}
+        {# }); #}
+
+
+        function sign_in() {
+            let username = $("#input-username").val()
+            let password = $("#input-password").val()
+
+            if (username == "") {
+                $("#help-id-login").text("아이디를 입력해주세요.")
+                $("#input-username").focus()
+                return;
+            } else {
+                $("#help-id-login").text("")
+            }
+
+            if (password == "") {
+                $("#help-password-login").text("비밀번호를 입력해주세요.")
+                $("#input-password").focus()
+                return;
+            } else {
+                $("#help-password-login").text("")
+            }
+            $.ajax({
+                type: "POST",
+                url: "/sign_in",
+                data: {
+                    username_give: username,
+                    password_give: password
+                },
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        $.cookie('mytoken', response['token'], {path: '/'});
+                        window.location.replace("/")
+                    } else {
+                        alert(response['msg'])
+                    }
+                }
+            });
+         }
 
     </script>
+
 </head>
 <body>
-    <div class="back_img">
-        <div class="logo">
-            <img src="../static/img/flasent-logo-white.png">
-        </div>
-        <p>꽃 선물하기 좋은 <span id="temp">00.0</span>도</p>
-        <div class="mypost" id="post_box">
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">아이디</label>
-            </div>
+<div class="back_img">
+    <div class="logo">
+        <img src="../static/img/flasent-logo-white.png">
+    </div>
+    <p>꽃 선물하기 좋은 <span id="temp">00.0</span>도</p>
+    <div class="mypost" id="post_box">
+        <div class="input-form">
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">비밀번호</label>
-            </div>
-            <div class="btn_box">
-                <button type="button" class="btn btn-outline-success"><a href="#">회원가입</a></button>
-                <button type="button" class="btn btn-outline-success"><a href="#">로그인</a></button>
-            </div>
+            <input id="input-username" type="text" class="form-control" placeholder="아이디">
+            <label for="floatingInput">아이디</label>
+        </div>
+        <p id="help-id-login"></p>
+        </div>
+        <div class="input-form">
+            <div class="form-floating">
+            <input id="input-password" type="password" class="form-control" placeholder="비밀번호">
+            <label for="floatingInput">비밀번호</label>
+        </div>
+        <p id="help-password-login"></p>
+        </div>
+        <div class="btn_box">
+            <button type="button" class="btn btn-outline-success"><a href="membership.html">회원가입</a></button>
+            <button style="color: white" type="button" onclick="sign_in()" class="btn btn-outline-success">로그인</button>
         </div>
     </div>
+</div>
 </body>
 </html>
+

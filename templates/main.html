@@ -30,7 +30,7 @@
 
             $.ajax({
                 type: "GET",
-                url: "/category",
+                url: "/",
                 data: {category_give: category},
                 success: function (response) {
                     console.log(response)
@@ -52,7 +52,6 @@
             <h1 class="flasent-logo"></h1>
         </div>
     </header>
-    <p>{{ category_receive }}</p>
     <div class="container">
         <div class="theme">
             <ul>
@@ -76,28 +75,15 @@
         <div id="flower-list" class="flower-box row row-cols-1 row-cols-md-3 g-4">
             {% for list in lists %}
                 <div class="col">
-                    <a href="/post/{{ list.id }}">
-                        <div class="card">
-                            <img src="{{ list.img }}" class="card-img-top" alt="꽃 이미지"/>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ list.name }} ({{ list.category }})</h5>
+                        <a href="/post/{{ list.id }}">
+                            <div class="card">
+                                <img src="{{ list.img }}" class="card-img-top" alt="꽃 이미지"/>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ list.name }} ({{ list.category }})</h5>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-
-                {#                {% if categories in list.category %}#}
-                {#                    <div class="col">#}
-                {#                        <a href="/post/{{ list.id }}">#}
-                {#                            <div class="card">#}
-                {#                                <img src="{{ list.img }}" class="card-img-top" alt="꽃 이미지"/>#}
-                {#                                <div class="card-body">#}
-                {#                                    <h5 class="card-title">{{ list.name }} ({{ list.category }})</h5>#}
-                {#                                </div>#}
-                {#                            </div>#}
-                {#                        </a>#}
-                {#                    </div>#}
-                {#                {% endif %}#}
+                        </a>
+                    </div>
             {% endfor %}
         </div>
     </div>
