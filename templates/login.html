@@ -20,18 +20,18 @@
     <link rel="stylesheet" href="../static/css/login.css">
 
     <script>
-        {#$(document).ready(function () {#}
-        {#    $.ajax({#}
-        {#        type: "GET",#}
-        {#        url: "http://spartacodingclub.shop/sparta_api/weather/seoul",#}
-        {#        data: {},#}
-        {#        success: function (response) {#}
-        {#            let temp = response['temp']#}
-        {##}
-        {#            $('#temp').text(temp)#}
-        {#        }#}
-        {#    })#}
-        {# }); #}
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
+                data: {},
+                success: function (response) {
+                    let temp = response['temp']
+
+                    $('#temp').text(temp)
+                }
+            })
+         });
 
 
         function sign_in() {
