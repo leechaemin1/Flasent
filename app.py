@@ -19,17 +19,9 @@ db = client.flower
 SECRET_KEY = 'SPARTA'
 
 
-@app.route('/', methods=["GET"])
+@app.route('/')
 def home():
-    category_receive = request.args.get('category_give')
-    print(category_receive)
-    flower_list = list(db.flowers.find({}, {'_id': False}))
-    # for f_list in flower_list:
-    #     if category_receive is None:
-    #         print('afdsfsdf')
-    #     if category_receive in f_list['category']:
-    #         print('cate', category_receive, 'f_list', f_list)
-    return render_template('main.html', lists=flower_list)
+    return render_template('main.html')
 
 @app.route('/login')
 def login():
@@ -67,6 +59,11 @@ def post(id):
     if (int(id) >= len(flower_list)):
         return redirect('/')
     return render_template('post.html', id=id, doc=flower_list)
+
+@app.route("/flower", methods=["GET"])
+def flowers_get():
+    flowers_list = list(db.flowers.find({'category': {'$regex': request.args.get('category')}},{'_id':False}))
+    return jsonify({'flowers': flowers_list})
 
 
 

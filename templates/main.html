@@ -16,28 +16,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gaegu&display=swap" rel="stylesheet">
     <script>
         $(document).ready(function () {
-            {#categoryOnclick('');#}
+            categoryOnClick('');
         });
 
-        function categoryOnclick(element) {
+        function categoryOnClick(element) {
             const $li = document.querySelectorAll('.theme li');
             for (let i = 0; i < $li.length; i++) {
                 $li[i].className = '';
             }
             element.className = 'active';
 
-            let category = !element ? '' : element.getAttribute('data-category')
-
+            let category_given = !element ? '' : element.getAttribute('data-category')
             $.ajax({
                 type: "GET",
-                url: "/",
-                data: {category_give: category},
+                url: "/flower",
+                data: {category: category_given},
                 success: function (response) {
-                    console.log(response)
+                    $('#flower-list').empty();
+                    let rows = response['flowers']
+                    for (let i = 0; i < rows.length; i++) {
+                        let name = rows[i]['name']
+                        let img = rows[i]['img']
+                        let id = rows[i]['id']
+
+                        let temp_html = `<a href="/post/${id}">
+                                            <div class="col">
+                                                <div class="card">
+                                                        <img src="${img} "
+                                                            class="card-img-top" alt="꽃 이미지">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">${name}</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>`
+
+                        $('#flower-list').append(temp_html)
+                    }
                 }
             })
         }
-
     </script>
 </head>
 <body>
@@ -51,43 +69,31 @@
         <div class="logo-background">
             <h1 class="flasent-logo"></h1>
         </div>
+
     </header>
     <div class="container">
         <div class="theme">
             <ul>
-                <li onclick="categoryOnclick(this)" data-category="생일">생일</li>
-                <li onclick="categoryOnclick(this)" data-category="집들이">집들이</li>
-                <li onclick="categoryOnclick(this)" data-category="결혼기념일">결혼기념일</li>
-                <li onclick="categoryOnclick(this)" data-category="프로포즈">프로포즈</li>
-                <li onclick="categoryOnclick(this)" data-category="스승의날">스승의날</li>
-                <li onclick="categoryOnclick(this)" data-category="출산">출산</li>
+                <li onclick="categoryOnClick(this)" data-category="생일">생일</li>
+                <li onclick="categoryOnClick(this)" data-category="집들이">집들이</li>
+                <li onclick="categoryOnClick(this)" data-category="결혼기념일">결혼기념일</li>
+                <li onclick="categoryOnClick(this)" data-category="프로포즈">프로포즈</li>
+                <li onclick="categoryOnClick(this)" data-category="스승의날">스승의날</li>
+                <li onclick="categoryOnClick(this)" data-category="출산">출산</li>
             </ul>
             <ul>
-                <li onclick="categoryOnclick(this)" data-category="졸업">졸업</li>
-                <li onclick="categoryOnclick(this)" data-category="입학">입학</li>
-                <li onclick="categoryOnclick(this)" data-category="전시회">전시회</li>
-                <li onclick="categoryOnclick(this)" data-category="병문안">병문안</li>
-                <li onclick="categoryOnclick(this)" data-category="취업">취업</li>
-                <li onclick="categoryOnclick(this)" data-category="크리스마스">크리스마스</li>
+                <li onclick="categoryOnClick(this)" data-category="졸업">졸업</li>
+                <li onclick="categoryOnClick(this)" data-category="입학">입학</li>
+                <li onclick="categoryOnClick(this)" data-category="전시회">전시회</li>
+                <li onclick="categoryOnClick(this)" data-category="병문안">병문안</li>
+                <li onclick="categoryOnClick(this)" data-category="취업">취업</li>
+                <li onclick="categoryOnClick(this)" data-category="크리스마스">크리스마스</li>
             </ul>
         </div>
 
         <div id="flower-list" class="flower-box row row-cols-1 row-cols-md-3 g-4">
-            {% for list in lists %}
-                <div class="col">
-                        <a href="/post/{{ list.id }}">
-                            <div class="card">
-                                <img src="{{ list.img }}" class="card-img-top" alt="꽃 이미지"/>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ list.name }} ({{ list.category }})</h5>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-            {% endfor %}
         </div>
     </div>
-</div>
 </div>
 
 </body>
