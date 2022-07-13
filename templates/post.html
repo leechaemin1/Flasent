@@ -15,10 +15,8 @@
             alert('로그인페이지로 돌아갑니다')
             window.location.href = "/login"
         }
-    </script>
-</head>
-<script>
-    function save_comment() {
+
+        function save_comment() {
         let comment = $('#comment').val();
         let flowerId = {{ doc[id|int].id }}
             console.log(flowerId)
@@ -33,10 +31,10 @@
             }
         })
     }
-</script>
+    </script>
 </head>
-<body>
 
+<body>
 <div class="post-page">
     <div class="container">
         <div class="log-button__container">
