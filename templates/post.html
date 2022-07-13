@@ -22,7 +22,10 @@
         let flowerId = {{ doc[id|int].id }}
             console.log(flowerId)
 
-        $.ajax({
+        if(comment === '') {
+            alert('댓글을 입력해주세요')
+        } else {
+            $.ajax({
             type: "POST",
             url: "/comments",
             data: {comment_give: comment, id_give: flowerId},
@@ -31,6 +34,7 @@
                 window.location.reload()
             }
         })
+        }
     }
     </script>
 </head>
