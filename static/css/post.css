@@ -56,3 +56,24 @@ body {
 .post-page .post-page__buttton {
     margin-bottom: 50px;
 }
+
+
+.mypost{
+    width: 865px;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    margin: 30px auto ;
+
+
+}
+.form-control{
+    width: 800px;
+
+}
+
+.card{
+    width: 865px;
+    margin: 10px auto;
+    background-color: white;
+}

@@ -53,7 +53,7 @@ def sign_in():
 def membership():
     return render_template('membership.html')
 
-@app.route('/post/<id>')
+@app.route('/post/<id>',)
 def post(id):
     flower_list = list(db.flowers.find({}, {'_id': False}))
     if (int(id) >= len(flower_list)):
@@ -64,6 +64,32 @@ def post(id):
 def flowers_get():
     flowers_list = list(db.flowers.find({'category': {'$regex': request.args.get('category')}},{'_id':False}))
     return jsonify({'flowers': flowers_list})
+
+@app.route("/review", methods=["POST"])
+def review_post():
+    comment_receive = request.form["comment_give"]
+    user_info = db.member.find_one({"username": payload["id"]})
+
+    # doc = {
+    #     "comment_list":{
+    #     "username": user_info["username"],
+    #     "comment": comment_receive,}
+    # }
+    #
+
+    db.flowers.update(
+        {"id":""}
+    )
+
+    return jsonify({'msg': '저장 완료!'})
+
+@app.route("/review", methods=["GET"])
+def review_get():
+    comment_list = list(db.flowers.find({},{'_id':False}))
+    user_info = db.member.find_one({"username": payload["id"]})
+    return jsonify({'comments':comment_list, 'info':user_info})
+
+
 
 
 
