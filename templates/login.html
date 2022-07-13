@@ -63,8 +63,8 @@
                 success: function (response) {
                     if (response['result'] == 'success') {
                         $.cookie('mytoken', response['token'], {path: '/'});
-                        window.location.replace("/")
-                    } else {
+                        wi                    } else {ndow.location.replace("/")
+
                         alert(response['msg'])
                     }
                 }
