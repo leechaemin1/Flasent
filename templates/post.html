@@ -98,8 +98,8 @@
             <button onclick="save_comment()" type="button" class="btn btn-dark">댓글 남기기</button>
         </div>
         {% if doc[id|int].comment_list|length != 0 %}
-            {% for text in doc[id|int].comment_list %}
-                <div class="mycards" id="comment-list">
+            {% for text in doc[id|int].comment_list|reverse %}
+                <div class="mycards" id="comment-list" >
                     <div class="card">
                         <div class="card-body">
                             <blockquote class="blockquote mb-0">
