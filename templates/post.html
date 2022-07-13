@@ -130,9 +130,11 @@
             <div class="card-body">
                 <blockquote class="blockquote mb-0">
                     {% for comment in doc[id|int].comment_list.comment %}
-{#                    {% if doc[id|int].comment_list.comment !== "" %}#}
-                        <p>{{ comment }}</p>
-{#                    {% endif %}#}
+                        {% if doc[id|int].comment_list.comment is not none %}
+                            <p>{{ comment }}</p>
+{#                        {% else %}#}
+{#                            NONE#}
+{#                        {% endif %}#}
 
 {#                    <footer class="blockquote-footer">{{ doc[id|int].comments.userid }}</footer>#}
                     {% endfor %}
