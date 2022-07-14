@@ -12,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script>
         function sign_out() {
-            $.cookie('mytoken', null, {path: '/'});
+            $.removeCookie('mytoken', {path: '/'});
             alert('로그인페이지로 돌아갑니다')
             window.location.href = "/login"
         }

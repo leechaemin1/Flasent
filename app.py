@@ -34,6 +34,9 @@ def home():
 
 @app.route('/login')
 def login():
+    token_receive = request.cookies.get('mytoken')
+    if token_receive is not None:
+        return redirect('/')
     msg = request.args.get("msg")
     return render_template('login.html', msg=msg)
     # return render_template('login.html')
@@ -62,6 +65,9 @@ def sign_in():
 
 @app.route('/membership')
 def membership():
+    token_receive = request.cookies.get('mytoken')
+    if token_receive is not None:
+        return redirect('/')
     return render_template('membership.html')
 
 @app.route('/post/<id>')
