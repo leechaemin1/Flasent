@@ -18,24 +18,28 @@
         }
 
         function save_comment() {
-        let comment = $('#comment').val();
-        let flowerId = {{ doc[id|int].id }}
-            console.log(flowerId)
+            let comment = $('#comment').val()
+            let flowerId = {{ doc[id|int].id }}
 
-        if(comment === '') {
-            alert('댓글을 입력해주세요')
-        } else {
-            $.ajax({
-            type: "POST",
-            url: "/comments",
-            data: {comment_give: comment, id_give: flowerId},
-            success: function (response) {
-                alert(response['msg'])
-                window.location.reload()
-            }
-        })
+            if(comment === '') {
+                alert('댓글을 입력해주세요')
+                $('#comment').focus()
+            } else {
+                $.ajax({
+                type: "POST",
+                url: "/comments",
+                data: {comment_give: comment, id_give: flowerId},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            })
         }
     }
+
+        function backToTop() {
+          document.documentElement.scrollTop = 0;
+        }
     </script>
 </head>
 
@@ -97,7 +101,7 @@
         <div class="mypost">
             <div class="form-floating">
             <textarea class="form-control" placeholder="Leave a comment here" id="comment"
-                      style="height: 100px"></textarea>
+                      style="height: 100px" maxlength="60"></textarea>
                 <label for="floatingTextarea2">댓글</label>
             </div>
             <button onclick="save_comment()" type="button" class="btn btn-dark">댓글 남기기</button>
@@ -122,5 +126,12 @@
         <button onclick="window.history.back()" class="btn btn-outline-secondary">뒤로가기</button>
     </div>
 </div>
+<button
+        type="button"
+        class="btn btn-floating btn-lg"
+        id="btn-back-to-top"
+        onclick="backToTop()"
+        >
+</button>
 </body>
 </html>

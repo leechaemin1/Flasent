@@ -92,3 +92,23 @@ header {
 .card-title {
     text-align: center;
 }
+
+#btn-back-to-top {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../img/angle-up-solid.svg");
+    background-repeat: no-repeat;
+    background-color: white;
+    background-size: 20px;
+    background-position: center;
+    box-shadow: none;
+    border: none;
+}

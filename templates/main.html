@@ -65,6 +65,10 @@
             alert('로그인페이지로 돌아갑니다')
             window.location.href = "/login"
         }
+
+        function backToTop() {
+          document.documentElement.scrollTop = 0;
+        }
     </script>
 </head>
 <body>
@@ -104,6 +108,13 @@
         </div>
     </div>
 </div>
+<button
+        type="button"
+        class="btn btn-floating btn-lg"
+        id="btn-back-to-top"
+        onclick="backToTop()"
+        >
+</button>
 
 </body>
 </html>
