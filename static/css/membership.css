@@ -1,6 +1,7 @@
 * {
-    font-family: 'Gowun Dodum', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
 }
+
 #help-id-login,
 #help-password-login,
 #help-repassword-login {
@@ -9,7 +10,6 @@
     margin-top: 6px;
     margin-bottom: 10px;
 }
-
 
 .background {
     width: 100%;
@@ -32,7 +32,7 @@
 
 .join-title {
     width: 100%;
-    font-size: 22px;
+    font-size: 24px;
     color: white;
     text-align: left;
     margin-top: 20px;
@@ -74,17 +74,8 @@
 }
 
 .registerbtn {
-    color: white;
     width: 100%;
     border: 1px solid white;
-}
-
-.registerbtn > span {
-    background-color: white;
-}
-
-.registerbtn:hover {
-    font-weight: bold;
 }
 
 .btn.idbtn {
@@ -104,22 +95,4 @@
 
 #userid {
     padding-right: 23%;
-}
-
-@media screen and (max-width: 700px) {
-    .titlebox {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        margin: 2% 0 2% 0;
-        color: white;
-        width: 100%;
-    }
-
-    .titlebox > h1 {
-        font-size: 50px;
-        margin-bottom: 0;
-    }
-
 }
