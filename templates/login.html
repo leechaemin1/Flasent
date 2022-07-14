@@ -37,10 +37,18 @@
             })
         });
 
+        $(document).keyup(function(event) {
+            if ($("#input-password").is(":focus") && event.key == "Enter") {
+                sign_in()
+            }
+        });
+
         function enterkey(e){
             if(e.keyCode === 13) {
+                console.log(e)
                 sign_in();
             }
+
         }
 
 
@@ -110,7 +118,7 @@
         </div>
         <div class="btn_box">
             <button type="button" class="btn btn-outline-secondary" onclick="window.location.href = '/membership'"><a href="/membership">회원가입</a></button>
-            <button type="button" class="btn btn-outline-secondary" onclick="sign_in()" onkeyup="enterkey(event)">로그인</button>
+            <button type="button" class="btn btn-outline-secondary" onclick="sign_in()">로그인</button>
         </div>
     </div>
     </div>
