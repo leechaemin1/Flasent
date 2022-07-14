@@ -44,6 +44,7 @@ header {
     height: 200px;
     margin-bottom: 0;
     background: url("../img/flasent-logo-white.png") no-repeat center;
+    cursor: pointer;
 }
 
 .log-button__container{

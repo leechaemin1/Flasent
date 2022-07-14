@@ -38,8 +38,16 @@
     }
 
         function backToTop() {
-          document.documentElement.scrollTop = 0;
+          $('html').scrollTop(0);
         }
+
+        window.addEventListener('scroll', function (){
+            if ($(this).scrollTop() > 150) {
+                $('#btn-back-to-top').show();
+            } else {
+                $('#btn-back-to-top').hide();
+            };
+        })
     </script>
 </head>
 
@@ -53,7 +61,7 @@
     <header class="page-header">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="flasent-logo"></h1>
+                <h1 class="flasent-logo" onclick="window.location = '/'"></h1>
             </div>
         </div>
     </header>

@@ -67,8 +67,16 @@
         }
 
         function backToTop() {
-          document.documentElement.scrollTop = 0;
+          $('html').scrollTop(0);
         }
+
+        window.addEventListener('scroll', function (){
+            if ($(this).scrollTop() > 150) {
+                $('#btn-back-to-top').show();
+            } else {
+                $('#btn-back-to-top').hide();
+            };
+        })
     </script>
 </head>
 <body>
@@ -80,7 +88,7 @@
             </div>
         </div>
         <div class="logo-background">
-            <h1 class="flasent-logo"></h1>
+            <h1 class="flasent-logo" onclick="window.location.reload()"></h1>
         </div>
 
     </header>

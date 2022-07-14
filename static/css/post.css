@@ -37,6 +37,7 @@ body {
     width: auto;
     height: 300px;
     background: url("../img/flasent-logo-white.png") no-repeat center;
+    cursor: pointer;
 }
 
 .post-page .post-page__top {
