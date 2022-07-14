@@ -21,8 +21,8 @@
             let comment = $('#comment').val()
             let flowerId = {{ doc[id|int].id }}
 
-            if(comment === '') {
-                alert('댓글을 입력해주세요')
+            if(comment.length < 3) {
+                alert('댓글을 2자 이상 입력해주세요')
                 $('#comment').focus()
             } else {
                 $.ajax({
